@@ -4,4 +4,4 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/17202-scala-macro-tools)](https://plugins.jetbrains.com/plugin/17202-scala-macro-tools)
 
 
-> The intellij plugin named `Scala-Macro-Tools` in marketplace.
+The plugin for intellij IDEA to support [Scala-Macro-Tools](https://github.com/bitlap/scala-macro-tools) annotations.

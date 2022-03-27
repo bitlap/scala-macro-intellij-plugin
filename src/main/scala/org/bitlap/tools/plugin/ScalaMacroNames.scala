@@ -14,4 +14,5 @@ object ScalaMacroNames {
   val CONSTRUCTOR = s"$NS.constructor"
   val JSON = s"$NS.json"
   val EQUALS_HASHCODE = s"$NS.equalsAndHashCode"
+  val JAVA_COMPATIBLE = s"$NS.javaCompatible"
 }

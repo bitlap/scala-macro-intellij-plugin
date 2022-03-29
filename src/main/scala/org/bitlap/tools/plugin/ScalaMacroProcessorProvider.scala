@@ -2,8 +2,8 @@ package org.bitlap.tools.plugin
 
 import com.intellij.openapi.Disposable
 import org.bitlap.tools.plugin.processor.Processor
-import org.bitlap.tools.plugin.processor.clazz.{ApplyProcessor, BuilderProcessor, ConstructorProcessor, EqualsAndHashCodeProcessor, JavaCompatibleProcessor, JsonProcessor, LogProcessor}
-import org.jetbrains.plugins.scala.lang.psi.api.toplevel.typedef.{ScClass, ScObject, ScTypeDefinition}
+import org.bitlap.tools.plugin.processor.clazz.{ ApplyProcessor, BuilderProcessor, ConstructorProcessor, EqualsAndHashCodeProcessor, JavaCompatibleProcessor, JsonProcessor, LogProcessor }
+import org.jetbrains.plugins.scala.lang.psi.api.toplevel.typedef.{ ScClass, ScObject, ScTypeDefinition }
 
 import scala.collection.mutable
 

@@ -13,12 +13,15 @@ abstract class AbsProcessor extends Processor {
 
   override def needCompanion: Boolean = false
 
+  // Parameter
+  case class Parameter(name: String, typ: String, isVar: Boolean = false)
+
   /**
    * get constructor parameters
    *
    * @return name and type
    */
-  protected def getConstructorParameters(clazz: ScClass, withSecond: Boolean = true): Seq[(String, String)] = {
+  protected def getConstructorParameters(clazz: ScClass, withSecond: Boolean = true): Seq[Parameter] = {
     this.getConstructorCurryingParameters(clazz, withSecond, withCurrying = false).head
   }
 
@@ -29,7 +32,7 @@ abstract class AbsProcessor extends Processor {
    *   if `withCurrying` = true, return (name: type, name: type)(name: type)...
    *   else return (name: type, name: type, name: type, ...)
    */
-  protected def getConstructorCurryingParameters(clazz: ScClass, withSecond: Boolean = true, withCurrying: Boolean = true): Seq[Seq[(String, String)]] = {
+  protected def getConstructorCurryingParameters(clazz: ScClass, withSecond: Boolean = true, withCurrying: Boolean = true): Seq[Seq[Parameter]] = {
     val constructors = if (withSecond) {
       clazz.constructors.map(Some(_))
     } else {
@@ -39,7 +42,7 @@ abstract class AbsProcessor extends Processor {
       constructors.flatten.flatMap { c =>
         c.effectiveParameterClauses.map(_.effectiveParameters.collect {
           case p: ScClassParameter =>
-            p.name -> p.`type`().toOption.map(_.toString).getOrElse("Unit")
+            Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar)
         })
       }
     } else {
@@ -47,7 +50,7 @@ abstract class AbsProcessor extends Processor {
         constructors.flatten.flatMap(_.getParameterList.getParameters)
           .collect {
             case p: ScClassParameter =>
-              p.name -> p.`type`().toOption.map(_.toString).getOrElse("Unit")
+              Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar)
           }
       )
     }

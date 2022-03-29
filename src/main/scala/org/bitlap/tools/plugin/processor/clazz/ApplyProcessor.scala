@@ -22,7 +22,7 @@ class ApplyProcessor extends AbsProcessor {
           case obj: ScObject =>
             val clazz = obj.fakeCompanionClassOrCompanionClass.asInstanceOf[ScClass]
             val nameAndTypes = getConstructorCurryingParameters(clazz, withSecond = false)
-              .map(_.map(o => s"${o._1}: ${o._2}").mkString("(", ", ", ")"))
+              .map(_.map(o => s"${o.name}: ${o.typ}").mkString("(", ", ", ")"))
               .mkString
             val genericType = getTypeParamString(clazz)
             val returnGenericType = getTypeParamString(clazz, returnType = true)

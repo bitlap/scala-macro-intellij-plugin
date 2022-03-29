@@ -24,7 +24,7 @@ lazy val `intellij-plugin` = (project in file("."))
     Test / unmanagedResourceDirectories += baseDirectory.value / "src" / "test" / "resources",
     patchPluginXml := pluginXmlOptions { xml =>
       //      xml.version = (ThisBuild / version).value
-      xml.version = "0.4.0"
+      xml.version = "0.4.2"
       xml.pluginDescription = IO.read(baseDirectory.value / "src" / "main" / "resources" / "patch" / "description.html")
       xml.changeNotes = IO.read(baseDirectory.value / "src" / "main" / "resources" / "patch" / "change.html")
     },

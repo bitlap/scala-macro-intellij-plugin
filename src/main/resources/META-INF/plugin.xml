@@ -21,6 +21,7 @@
         <applicationService serviceImplementation="org.bitlap.tools.plugin.ScalaMacroProcessorProvider" />
         <!-- <lang.psiAugmentProvider implementation="org.bitlap.tools.plugin.ScalaMacroAugmentProvider"/> -->
         <notificationGroup displayType="BALLOON" id="Scala-Macro-Tools Plugin" />
+        <dependencySupport kind="java" coordinate="org.bitlap:smt-tools" displayName="Scala-Macro-Tools"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.intellij.scala">

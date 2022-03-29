@@ -48,12 +48,12 @@ class ConstructorProcessor extends AbsProcessor {
                 case `var`: ScVariableDefinition => `var`
               }
               .flatMap { v =>
-                v.declaredNames.map(n => (n, v.`type`().toOption.map(_.toString).getOrElse("Unit")))
+                v.declaredNames.map(n => Parameter(n, v.`type`().toOption.map(_.toString).getOrElse("Unit")))
               }
-              .filter(v => !excludeFields.contains(v._1))
+              .filter(v => !excludeFields.contains(v.name))
 
-            val consFieldsStr = consFields.map(_._1).mkString(", ")
-            val allFieldsStr = (consFields ++ varFields).map(f => s"${f._1}: ${f._2}").mkString(", ")
+            val consFieldsStr = consFields.map(_.name).mkString(", ")
+            val allFieldsStr = (consFields ++ varFields).map(f => s"${f.name}: ${f.typ}").mkString(", ")
 
             Seq(s"def this($allFieldsStr) = this($consFieldsStr)")
           case _ => Nil

@@ -44,7 +44,7 @@ class BuilderProcessor extends AbsProcessor {
             val genericType = getTypeParamString(clazz)
             val returnGenericType = getTypeParamString(clazz, returnType = true)
             val assignMethods = nameAndTypes.map(term =>
-              s"def ${term._1}(${term._1}: ${term._2}) = this"
+              s"def ${term.name}(${term.name}: ${term.typ}) = this"
             )
             Seq(
               s"""

@@ -20,7 +20,13 @@ class EqualsAndHashCodeProcessor extends AbsProcessor {
       case ProcessType.Method =>
         source match {
           case _: ScClass =>
-            Seq(s"def canEqual(that: Any): Boolean = ???")
+            // exists method that has override from parent class
+            val hasOverride = source.findMethodsByName("canEqual").nonEmpty
+            if (!hasOverride) {
+              Seq(s"def canEqual(that: Any): Boolean = ???")
+            } else {
+              Nil
+            }
           case _ => Nil
         }
       case _ => Nil

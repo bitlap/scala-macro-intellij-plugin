@@ -3,7 +3,7 @@ import org.jetbrains.sbtidea.Keys._
 name := "scala-macro-intellij-plugin"
 organization := "org.bitlap.tools"
 
-lazy val scala213 = "2.13.6"
+lazy val scala213 = "2.13.8"
 
 scalaVersion := scala213
 
@@ -13,18 +13,18 @@ lazy val `intellij-plugin` = (project in file("."))
     version := (ThisBuild / version).value,
     scalaVersion := scala213,
     ThisBuild / intellijPluginName := "Scala-Macro-Tools",
-    ThisBuild / intellijBuild := "213.5744.223", // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2021.3+latest+builds
+    // This is a EAP version, instead of release version
+    ThisBuild / intellijBuild := "221.5080.93", // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2021.3+latest+builds
     ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity,
     Global / intellijAttachSources := true,
     Compile / javacOptions ++= "--release" :: "11" :: Nil,
-    //    Global / scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xfatal-warnings"),
+    Global / scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xfatal-warnings"),
     intellijPlugins ++= Seq("com.intellij.java", "com.intellij.java-i18n", "org.intellij.scala").map(_.toPlugin),
-    libraryDependencies ++= Seq.empty,
     Compile / unmanagedResourceDirectories += baseDirectory.value / "src" / "main" / "resources",
     Test / unmanagedResourceDirectories += baseDirectory.value / "src" / "test" / "resources",
     patchPluginXml := pluginXmlOptions { xml =>
       //      xml.version = (ThisBuild / version).value
-      xml.version = "0.4.2"
+      xml.version = "0.4.3-RC"
       xml.pluginDescription = IO.read(baseDirectory.value / "src" / "main" / "resources" / "patch" / "description.html")
       xml.changeNotes = IO.read(baseDirectory.value / "src" / "main" / "resources" / "patch" / "change.html")
     },

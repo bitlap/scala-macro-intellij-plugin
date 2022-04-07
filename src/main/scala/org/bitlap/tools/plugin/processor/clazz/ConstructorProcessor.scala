@@ -26,6 +26,7 @@ class ConstructorProcessor extends AbsProcessor {
       case ProcessType.Method =>
         source match {
           case clazz: ScClass =>
+            // FIXME: currying
             val consFields = getConstructorParameters(clazz, withSecond = false)
             val excludeFields = clazz.annotations(ScalaMacroNames.CONSTRUCTOR).lastOption match {
               case Some(an) =>

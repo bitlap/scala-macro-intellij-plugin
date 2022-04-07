@@ -66,7 +66,7 @@ class BuilderProcessor extends AbsProcessor {
    * @param className   base class name
    * @param returnType  if function or field return type
    */
-  private def genBuilderName(className: String, returnType: Boolean = false): String = {
+  @inline private def genBuilderName(className: String, returnType: Boolean = false): String = {
     if (returnType) {
       s"$className.$className$builderClassNameSuffix"
     } else {

@@ -30,7 +30,8 @@ class ConstructorProcessor extends AbsProcessor {
             val excludeFields = clazz.annotations(ScalaMacroNames.CONSTRUCTOR).lastOption match {
               case Some(an) =>
                 // get excludeFields function call
-                an.getParameterList.getAttributes.findLast(_.getAttributeName == excludeFieldsName).map(_.getDetachedValue)
+                an.getParameterList.getAttributes.findLast(_.getAttributeName == excludeFieldsName)
+                  .map(_.getDetachedValue)
                   .collect {
                     case call: ScMethodCall =>
                       // get call parameters
@@ -39,18 +40,15 @@ class ConstructorProcessor extends AbsProcessor {
                           case str: ScLiteralType => str.value.value.toString
                         }
                         .mkString(", ")
-                  }.getOrElse("")
-              case None => ""
+                  }
+              case None => None
             }
             val varFields = clazz.extendsBlock.members
               .collect {
                 // var, others: ScPatternDefinition, ScFunctionDefinition
-                case `var`: ScVariableDefinition => `var`
-              }
-              .flatMap { v =>
-                v.declaredNames.map(n => Parameter(n, v.`type`().toOption.map(_.toString).getOrElse("Unit")))
-              }
-              .filter(v => !excludeFields.contains(v.name))
+                case `var`: ScVariableDefinition =>
+                  `var`.declaredNames.map(n => Parameter(n, `var`.`type`().toOption.map(_.toString).getOrElse("Unit")))
+              }.flatten.filter(v => !excludeFields.contains(v.name))
 
             val consFieldsStr = consFields.map(_.name).mkString(", ")
             val allFieldsStr = (consFields ++ varFields).map(f => s"${f.name}: ${f.typ}").mkString(", ")

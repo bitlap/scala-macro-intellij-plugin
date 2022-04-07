@@ -22,7 +22,7 @@ class JavaCompatibleProcessor extends AbsProcessor {
               Seq(
                 if (term.isVar) Some(s"def set$mName(${term.name}: ${term.typ}) = this") else None,
                 Some(s"def get$mName(): ${term.typ} = this.${term.name}"),
-              ).filter(_.nonEmpty).map(_.get)
+              ).collect { case Some(value) if value.nonEmpty => value }
             }
             Seq("def this() = ???") ++ assignMethods
           case _ => Nil

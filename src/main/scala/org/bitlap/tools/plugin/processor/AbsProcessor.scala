@@ -32,7 +32,11 @@ abstract class AbsProcessor extends Processor {
    *   if `withCurrying` = true, return (name: type, name: type)(name: type)...
    *   else return (name: type, name: type, name: type, ...)
    */
-  protected def getConstructorCurryingParameters(clazz: ScClass, withSecond: Boolean = true, withCurrying: Boolean = true): Seq[Seq[Parameter]] = {
+  protected def getConstructorCurryingParameters(
+    clazz:        ScClass,
+    withSecond:   Boolean = true,
+    withCurrying: Boolean = true
+  ): Seq[Seq[Parameter]] = {
     val constructors = if (withSecond) {
       clazz.constructors.map(Some(_))
     } else {
@@ -61,8 +65,8 @@ abstract class AbsProcessor extends Processor {
    *
    * @param returnType if it is return type
    * @return
-   *   if `returnType` is false, just return typeParamString with bound like [T <: Any, U]
-   *   else return typeParamString without bound like [T, U]
+   *   if `returnType` is false, just return typeParamString with bound like `[T <: Any, U]`
+   *   else return typeParamString without bound like `[T, U]`
    */
   protected def getTypeParamString(clazz: ScClass, returnType: Boolean = false): String = {
     if (!returnType || clazz.typeParamString.isEmpty) {

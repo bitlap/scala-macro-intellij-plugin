@@ -1,6 +1,6 @@
 package org.bitlap.tools.plugin
 
-import com.intellij.openapi.components.ServiceManager
+import com.intellij.openapi.application.ApplicationManager
 import org.bitlap.tools.plugin.processor.ProcessType
 import org.bitlap.tools.plugin.processor.ProcessType.ProcessType
 import org.jetbrains.plugins.scala.lang.psi.api.toplevel.typedef.ScTypeDefinition
@@ -14,7 +14,7 @@ import org.jetbrains.plugins.scala.lang.psi.impl.toplevel.typedef.SyntheticMembe
  */
 class ScalaMacroInjector extends SyntheticMembersInjector {
 
-  private lazy val provider = ServiceManager.getService(classOf[ScalaMacroProcessorProvider])
+  private lazy val provider = ApplicationManager.getApplication.getService(classOf[ScalaMacroProcessorProvider])
 
   override def needsCompanionObject(source: ScTypeDefinition): Boolean = {
     provider.findProcessors(source).exists(_.needCompanion)

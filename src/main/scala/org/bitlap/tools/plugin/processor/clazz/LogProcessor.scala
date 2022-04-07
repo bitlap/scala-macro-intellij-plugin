@@ -23,13 +23,12 @@ class LogProcessor extends AbsProcessor {
         source match {
           case clazz @ (_: ScClass | _: ScObject) =>
             clazz.annotations(ScalaMacroNames.LOG).lastOption.fold[Seq[String]](Nil) { an =>
-              {
-                an.annotationExpr.getText match {
-                  case expr if expr.contains("Slf4j") => Seq(logExpr("org.slf4j.Logger"))
-                  case expr if expr.contains("Log4j2") => Seq(logExpr("org.apache.logging.log4j.Logger"))
-                  case expr if expr.contains("ScalaLoggingLazy") || expr.contains("ScalaLoggingStrict") => Seq(logExpr("com.typesafe.scalalogging.Logger"))
-                  case _ => Seq(logExpr())
-                }
+              an.annotationExpr.getText match {
+                case expr if expr.contains("Slf4j")  => Seq(logExpr("org.slf4j.Logger"))
+                case expr if expr.contains("Log4j2") => Seq(logExpr("org.apache.logging.log4j.Logger"))
+                case expr if expr.contains("ScalaLoggingLazy") || expr.contains("ScalaLoggingStrict") =>
+                  Seq(logExpr("com.typesafe.scalalogging.Logger"))
+                case _ => Seq(logExpr())
               }
             }
           case _ => Nil

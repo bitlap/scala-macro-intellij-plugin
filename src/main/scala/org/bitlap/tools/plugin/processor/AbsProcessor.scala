@@ -14,7 +14,7 @@ abstract class AbsProcessor extends Processor {
   override def needCompanion: Boolean = false
 
   // Parameter
-  case class Parameter(name: String, typ: String, isVar: Boolean = false, isPrivateThis: Boolean = false)
+  case class Parameter(name: String, typ: String, isVar: Boolean = false)
 
   /**
    * get constructor parameters
@@ -46,7 +46,7 @@ abstract class AbsProcessor extends Processor {
       constructors.flatten.flatMap { c =>
         c.effectiveParameterClauses.map(_.effectiveParameters.collect {
           case p: ScClassParameter =>
-            Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar, p.isPrivateThis)
+            Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar)
         })
       }
     } else {
@@ -54,7 +54,7 @@ abstract class AbsProcessor extends Processor {
         constructors.flatten.flatMap(_.getParameterList.getParameters)
           .collect {
             case p: ScClassParameter =>
-              Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar, p.isPrivateThis)
+              Parameter(p.name, p.`type`().toOption.map(_.toString).getOrElse("Unit"), p.isVar)
           }
       )
     }

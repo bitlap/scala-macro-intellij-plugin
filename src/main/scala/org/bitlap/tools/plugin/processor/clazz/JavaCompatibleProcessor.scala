@@ -20,7 +20,7 @@ class JavaCompatibleProcessor extends AbsProcessor {
             val assignMethods = params.flatMap { term =>
               val mName = s"${term.name.head.toUpper}${term.name.tail}"
               Seq(
-                if (term.isVar && !term.isPrivateThis) Some(s"def set$mName(${term.name}: ${term.typ}) = this") else None,
+                if (term.isVar) Some(s"def set$mName(${term.name}: ${term.typ}) = this") else None,
                 Some(s"def get$mName(): ${term.typ} = this.${term.name}"),
               ).collect { case Some(value) if value.nonEmpty => value }
             }

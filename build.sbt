@@ -14,7 +14,7 @@ lazy val `intellij-plugin` = (project in file("."))
     scalaVersion := scala213,
     ThisBuild / intellijPluginName := "Scala-Macro-Tools",
     // This is a EAP version, instead of release version
-    ThisBuild / intellijBuild := "221.5080.93", // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2021.3+latest+builds
+    ThisBuild / intellijBuild := "221.6008.13", // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2022.1+latest+builds
     ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity,
     Global / intellijAttachSources := true,
     Compile / javacOptions ++= "--release" :: "11" :: Nil,

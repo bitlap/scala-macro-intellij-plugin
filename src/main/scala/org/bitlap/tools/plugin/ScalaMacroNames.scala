@@ -10,10 +10,8 @@ object ScalaMacroNames {
   private val NS: String = "org.bitlap.tools"
 
   val BUILDER: String = s"$NS.builder"
-  val LOG: String = s"$NS.log"
   val APPLY: String = s"$NS.apply"
   val CONSTRUCTOR: String = s"$NS.constructor"
-  val JSON: String = s"$NS.json"
   val EQUALS_HASHCODE: String = s"$NS.equalsAndHashCode"
   val JAVA_COMPATIBLE: String = s"$NS.javaCompatible"
 }

@@ -2,8 +2,8 @@ package org.bitlap.tools.plugin
 
 import com.intellij.openapi.Disposable
 import org.bitlap.tools.plugin.processor.Processor
-import org.bitlap.tools.plugin.processor.clazz.{ ApplyProcessor, BuilderProcessor, ConstructorProcessor, EqualsAndHashCodeProcessor, JavaCompatibleProcessor, JsonProcessor, LogProcessor }
-import org.jetbrains.plugins.scala.lang.psi.api.toplevel.typedef.{ ScClass, ScObject, ScTypeDefinition }
+import org.bitlap.tools.plugin.processor.clazz._
+import org.jetbrains.plugins.scala.lang.psi.api.toplevel.typedef._
 
 import scala.collection.mutable
 
@@ -16,8 +16,6 @@ class ScalaMacroProcessorProvider extends Disposable {
 
   private lazy val processors = mutable.Map[String, Processor]()
   register(ScalaMacroNames.BUILDER, new BuilderProcessor())
-    .register(ScalaMacroNames.LOG, new LogProcessor())
-    .register(ScalaMacroNames.JSON, new JsonProcessor())
     .register(ScalaMacroNames.APPLY, new ApplyProcessor())
     .register(ScalaMacroNames.CONSTRUCTOR, new ConstructorProcessor())
     .register(ScalaMacroNames.EQUALS_HASHCODE, new EqualsAndHashCodeProcessor())

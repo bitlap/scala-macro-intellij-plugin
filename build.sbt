@@ -3,6 +3,7 @@ import org.jetbrains.sbtidea.Keys._
 name := "scala-macro-intellij-plugin"
 organization := "org.bitlap.tools"
 
+lazy val ideaVersion = "221.6008.13"
 lazy val scala213 = "2.13.10"
 
 scalaVersion := scala213
@@ -14,7 +15,7 @@ lazy val `intellij-plugin` = (project in file("."))
     scalaVersion := scala213,
     ThisBuild / intellijPluginName := "Scala-Macro-Tools",
     // This is a EAP version, instead of release version
-    ThisBuild / intellijBuild := "231.9392.1", // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2022.1+latest+builds
+    ThisBuild / intellijBuild := ideaVersion, // https://confluence.jetbrains.com/display/IDEADEV/IDEA+2022.1+latest+builds
     ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity,
     Global / intellijAttachSources := true,
     Compile / javacOptions ++= "--release" :: "11" :: Nil,

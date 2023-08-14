@@ -18,11 +18,11 @@ class JavaCompatibleProcessor extends AbsProcessor {
           case _: ScClass =>
             val params = super.getConstructorCurryingParameters(source.asInstanceOf[ScClass]).flatten
             val assignMethods = params.flatMap { term =>
-              val mName = term.name.head.toUpper + term.name.tail
+              val mName = s"${term.name.head.toUpper}${term.name.tail}"
               Seq(
-                if (term.isVar) s"def set$mName(${term.name}: ${term.typ}) = this" else "",
-                s"def get$mName(): ${term.typ} = this.${term.name}",
-              ).filter(_.nonEmpty)
+                if (term.isVar) Some(s"def set$mName(${term.name}: ${term.typ}) = this") else None,
+                Some(s"def get$mName(): ${term.typ} = this.${term.name}"),
+              ).collect { case Some(value) if value.nonEmpty => value }
             }
             Seq("def this() = ???") ++ assignMethods
           case _ => Nil

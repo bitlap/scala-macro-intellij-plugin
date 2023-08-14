@@ -7,12 +7,11 @@ package org.bitlap.tools.plugin
  */
 object ScalaMacroNames {
 
-  private val NS = "org.bitlap.tools"
-  val BUILDER = s"$NS.builder"
-  val LOG = s"$NS.log"
-  val APPLY = s"$NS.apply"
-  val CONSTRUCTOR = s"$NS.constructor"
-  val JSON = s"$NS.json"
-  val EQUALS_HASHCODE = s"$NS.equalsAndHashCode"
-  val JAVA_COMPATIBLE = s"$NS.javaCompatible"
+  private val NS: String = "org.bitlap.tools"
+
+  val BUILDER: String = s"$NS.builder"
+  val APPLY: String = s"$NS.apply"
+  val CONSTRUCTOR: String = s"$NS.constructor"
+  val EQUALS_HASHCODE: String = s"$NS.equalsAndHashCode"
+  val JAVA_COMPATIBLE: String = s"$NS.javaCompatible"
 }

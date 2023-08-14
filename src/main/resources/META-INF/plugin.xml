@@ -2,9 +2,9 @@
 <idea-plugin>
     <id>Scala-Macro-Tools Plugin</id>
     <name>Scala-Macro-Tools</name>
-    <version>XXX</version>
+    <version>0.5.0</version>
     <vendor>Scala Macro Tools</vendor>
-    <idea-version since-build="213.0"/>
+    <idea-version since-build="221.0"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>

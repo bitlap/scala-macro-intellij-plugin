@@ -3,7 +3,7 @@
     <id>Scala-Macro-Tools Plugin</id>
     <name>Scala-Macro-Tools</name>
     <version>0.5.0</version>
-    <vendor>Scala Macro Tools</vendor>
+    <vendor url="https://github.com/bitlap/scala-macro-intellij-plugin">bitlap</vendor>
     <idea-version since-build="221.0"/>
 
     <depends>com.intellij.modules.platform</depends>
